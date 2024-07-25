@@ -1,5 +1,5 @@
 export interface ProfessionalsVoll {
-  id: string;
+  id: number;
   imagem: string;
   nome: string;
   especialidade: string;

@@ -42,8 +42,6 @@ export function DataChart({ consulta }: Props) {
       } else {
         querysPros.push({ nome: pro.profissional[0].nome, consultas: 1 });
       }
-      console.log(querysMonth);
-      console.log(querysPros);
     });
 
     return querysPros;

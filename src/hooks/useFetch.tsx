@@ -7,8 +7,8 @@ interface UriFetch {
 }
 
 export type FetchResult<T> = {
-  data: T | null;
-  error: string | null;
+  data?: T | null;
+  error?: string | null;
 };
 
 export function useFetch<T>(url: keyof UriFetch): FetchResult<T> {
@@ -19,22 +19,23 @@ export function useFetch<T>(url: keyof UriFetch): FetchResult<T> {
     async function fetchData() {
       try {
         const response = await fetch(`http://localhost:8080/${url}`);
-        const responseData = await response.json();
 
-        console.log("Response Data:", responseData);
         if (!response.ok) {
-          setData(null);
-          throw new Error();
-        } else {
-          setData(responseData);
-          setError(null);
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
+
+        const responseData = await response.json();
+        setData(responseData);
+        setError(null);
       } catch (err: unknown) {
-        if (err instanceof Error) {
-          setError("Nao foi encontrado dados");
+        if (err instanceof SyntaxError) {
+          setError("Erro ao analisar o JSON retornado.");
+        } else if (err instanceof Error) {
+          setError(err.message);
         } else {
-          setError("Nao foi encontrado dados");
+          setError("Erro desconhecido ao buscar os dados.");
         }
+        setData(null);
       }
     }
 

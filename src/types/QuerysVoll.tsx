@@ -1,7 +1,7 @@
 import { Profissionais } from "./Professionals";
 
 export interface QuerysVoll {
-  id: string;
+  id: number;
   data: string;
   horario: string;
   profissional: Profissionais[];
