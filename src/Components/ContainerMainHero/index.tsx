@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { BaseQueryContainers } from "../BaseQueryContainers";
+import { useFetchQuery } from "../../hooks/useFetchQuery";
 
 const WrapperContainerHeroMain = styled.div`
   background-color: #fff;
@@ -26,6 +27,8 @@ const ContainerHeroContent = styled.div`
 `;
 
 export function ContainerMainHero() {
+  const { ...data } = useFetchQuery();
+
   return (
     <WrapperContainerHeroMain>
       <ContainerHeroContent>
@@ -33,12 +36,21 @@ export function ContainerMainHero() {
           Área Administrativa
         </BaseQueryContainers>
         <BaseQueryContainers
-          image="grafico"
+          image="consulta"
           table={true}
           to={"#"}
           nameLink="Ver mais"
+          consulta={data}
         >
           Consultas do dia
+        </BaseQueryContainers>
+        <BaseQueryContainers
+          dataChart={true}
+          consulta={data}
+          image="grafico"
+          to={"#"}
+        >
+          Consultas mensais por especialista
         </BaseQueryContainers>
       </ContainerHeroContent>
     </WrapperContainerHeroMain>

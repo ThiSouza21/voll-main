@@ -9,7 +9,12 @@ import {
   styled,
   tableCellClasses,
 } from "@mui/material";
-import { useFetchQuery } from "../../hooks/useFetchQuery";
+import { FetchResult } from "../../hooks/useFetch";
+import { QuerysVoll } from "../../types/QuerysVoll";
+
+interface Props {
+  consulta?: FetchResult<QuerysVoll[]>;
+}
 
 const StylizedCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
@@ -30,9 +35,7 @@ const StylizedRow = styled(TableRow)(() => ({
   },
 }));
 
-export function TableQuerys() {
-  const { data, error } = useFetchQuery();
-
+export function TableQuerys({ consulta }: Props) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="tabela customizada">
@@ -47,8 +50,8 @@ export function TableQuerys() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data &&
-            data.map((query) => (
+          {consulta?.data &&
+            consulta.data.map((query) => (
               <StylizedRow key={query.id}>
                 <StylizedCell>{query.data}</StylizedCell>
                 <StylizedCell>{query.horario}</StylizedCell>
@@ -60,10 +63,10 @@ export function TableQuerys() {
                 <StylizedCell>{query.modalidade}</StylizedCell>
               </StylizedRow>
             ))}
-          {error && (
+          {consulta?.error && (
             <TableRow>
               <StylizedCell colSpan={6} style={{ color: "red" }}>
-                Error: {error}
+                Error: {consulta.error}
               </StylizedCell>
             </TableRow>
           )}

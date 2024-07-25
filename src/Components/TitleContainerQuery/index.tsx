@@ -15,7 +15,7 @@ const ContainerTitleInfos = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   gap: 2em;
   flex-wrap: wrap;
@@ -38,7 +38,7 @@ const ContainertTopTexts = styled.div`
 `;
 
 const ImageTopText = styled.img`
-  height: 1.2em;
+  height: 1.4em;
 `;
 
 export function TitleContainerQuery({ children, image }: Props) {

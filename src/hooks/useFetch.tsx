@@ -6,9 +6,9 @@ interface UriFetch {
   avaliacoes: string;
 }
 
-type FetchResult<T> = {
-  data?: T | null;
-  error?: string | null;
+export type FetchResult<T> = {
+  data: T | null;
+  error: string | null;
 };
 
 export function useFetch<T>(url: keyof UriFetch): FetchResult<T> {
@@ -20,6 +20,7 @@ export function useFetch<T>(url: keyof UriFetch): FetchResult<T> {
       try {
         const response = await fetch(`http://localhost:8080/${url}`);
         const responseData = await response.json();
+
         console.log("Response Data:", responseData);
         if (!response.ok) {
           setData(null);

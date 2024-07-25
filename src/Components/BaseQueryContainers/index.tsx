@@ -2,13 +2,17 @@ import styled from "styled-components";
 import { TitleContainerQuery } from "../TitleContainerQuery";
 import { TableQuerys } from "../TableQuerys";
 import { NavLinks } from "../../NavLinks";
-
+import { FetchResult } from "../../hooks/useFetch";
+import { QuerysVoll } from "../../types/QuerysVoll";
+import { DataChart } from "../DataChart";
 interface Props {
   children?: React.ReactNode;
   nameLink?: string;
   to: string;
   image?: string;
   table?: boolean;
+  dataChart?: boolean;
+  consulta?: FetchResult<QuerysVoll[]>;
 }
 
 const WrapperContainerHeroMain = styled.div`
@@ -35,13 +39,16 @@ export function BaseQueryContainers({
   to,
   nameLink,
   table,
+  consulta,
+  dataChart,
 }: Props) {
   return (
     <WrapperContainerHeroMain>
       <ContainerHeroContent>
         <TitleContainerQuery image={image}>{children}</TitleContainerQuery>
-        {table && <TableQuerys />}
-        <NavLinks to={to}>{nameLink}</NavLinks>
+        {table && <TableQuerys consulta={consulta} />}
+        {dataChart && <DataChart consulta={consulta} />}
+        {nameLink && <NavLinks to={to}>{nameLink}</NavLinks>}
       </ContainerHeroContent>
     </WrapperContainerHeroMain>
   );
