@@ -18,7 +18,9 @@ export function useFetch<T>(url: keyof UriFetch): FetchResult<T> {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`http://localhost:8080/${url}`);
+        const response = await fetch(
+          `https://json-server-voll.vercel.app/${url}`
+        );
 
         if (!response.ok) {
           setData(null);
