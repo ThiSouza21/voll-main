@@ -21,26 +21,27 @@ export function useFetch<T>(url: keyof UriFetch): FetchResult<T> {
         const response = await fetch(`http://localhost:8080/${url}`);
 
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const responseData = await response.json();
-        setData(responseData);
-        setError(null);
-      } catch (err: unknown) {
-        if (err instanceof SyntaxError) {
-          setError("Erro ao analisar o JSON retornado.");
-        } else if (err instanceof Error) {
-          setError(err.message);
+          setData(null);
+          throw new Error();
         } else {
-          setError("Erro desconhecido ao buscar os dados.");
+          const responseData = await response.json();
+          setData(responseData);
+          setError(null);
         }
-        setData(null);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError("Nao foi encontrado dados");
+        } else {
+          setError("Nao foi encontrado dados");
+        }
       }
     }
 
     fetchData();
   }, [url]);
 
-  return { data, error };
+  if (!data) {
+    return { error };
+  }
+  return { data };
 }

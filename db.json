@@ -5,21 +5,21 @@
       "imagem": "https://imgur.com/imkS67m.png",
       "nome": "Ana Luiza",
       "especialidade": "Clínico Geral",
-      "nota": 4.5
+      "nota": 2.5
     },
     {
       "id": 2,
       "imagem": "https://imgur.com/iyFgXHb.png",
       "nome": "Caroline Carvalho",
       "especialidade": "Nutricionista",
-      "nota": 4.6
+      "nota": 3.3
     },
     {
       "id": 3,
       "imagem": "https://imgur.com/ho9CUwp.png",
       "nome": "Camila Fernanda",
       "especialidade": "Oftamologista",
-      "nota": 4.3
+      "nota": 5
     },
     {
       "id": 4,

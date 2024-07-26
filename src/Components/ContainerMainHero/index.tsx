@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { BaseQueryContainers } from "../BaseQueryContainers";
 import { useFetchQuery } from "../../hooks/useFetchQuery";
+import { useFetchProfessionals } from "../../hooks/useFetchProfessionals";
 
 const WrapperContainerHeroMain = styled.div`
   background-color: #fff;
@@ -28,6 +29,7 @@ const ContainerHeroContent = styled.div`
 
 export function ContainerMainHero() {
   const { ...data } = useFetchQuery();
+  const { ...profissionais } = useFetchProfessionals();
 
   return (
     <WrapperContainerHeroMain>
@@ -49,8 +51,18 @@ export function ContainerMainHero() {
           consulta={data}
           image="grafico"
           to={"#"}
+          date={true}
         >
           Consultas mensais por especialista
+        </BaseQueryContainers>
+        <BaseQueryContainers
+          profissionais={profissionais}
+          image="avaliacao"
+          to={"#"}
+          nameLink="Ver mais"
+          date={true}
+        >
+          Avaliações de especialistas
         </BaseQueryContainers>
       </ContainerHeroContent>
     </WrapperContainerHeroMain>

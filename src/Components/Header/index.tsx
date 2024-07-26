@@ -8,6 +8,7 @@ const WrapperHeaderMain = styled.div`
   height: auto;
   position: fixed;
   top: 0;
+  z-index: 9000;
 `;
 
 const ContainerHeaderContent = styled.div`
